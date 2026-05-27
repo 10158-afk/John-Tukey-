@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>John Tukey | AP Statistics Project</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    nav {
+      margin-top: 12px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 35px auto;
+      padding: 35px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      color: #1e3a8a;
+      margin-bottom: 18px;
+      border-left: 6px solid #2563eb;
+      padding-left: 12px;
+      font-size: 1.8rem;
+    }
+
+    h3 {
+      color: #2563eb;
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+
+    .hero {
+      text-align: center;
+      background: linear-gradient(135deg, #dbeafe, #ffffff);
+    }
+
+    .hero h2 {
+      border-left: none;
+      padding-left: 0;
+      font-size: 2.3rem;
+      color: #1e3a8a;
+    }
+
+    .hook {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #111827;
+      margin: 20px 0;
+    }
+
+    .hero-card {
+      margin: 25px auto 0;
+      padding: 25px;
+      max-width: 700px;
+      background: white;
+      border-radius: 15px;
+      border: 2px solid #bfdbfe;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 22px;
+    }
+
+    .stat-box {
+      background: #eff6ff;
+      padding: 18px;
+      border-radius: 14px;
+      text-align: center;
+      border: 1px solid #bfdbfe;
+    }
+
+    .stat-box strong {
+      display: block;
+      font-size: 1.4rem;
+      color: #1e40af;
+    }
+
+    .timeline {
+      border-left: 4px solid #2563eb;
+      padding-left: 25px;
+      margin-left: 10px;
+    }
+
+    .timeline-item {
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -35px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      background: #2563eb;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px #2563eb;
+    }
+
+    .year {
+      font-weight: bold;
+      color: #1e40af;
+      font-size: 1.1rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: #f9fafb;
+      border-radius: 15px;
+      padding: 20px;
+      border: 1px solid #e5e7eb;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .interactive-box {
+      background: #eff6ff;
+      border: 2px dashed #2563eb;
+      padding: 22px;
+      border-radius: 15px;
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin-top: 15px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1e40af;
+    }
+
+    #factResult {
+      margin-top: 18px;
+      font-weight: bold;
+      color: #111827;
+    }
+
+    ul, ol {
+      margin-left: 25px;
+      margin-top: 10px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .bibliography li {
+      margin-bottom: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    .note {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      padding: 15px;
+      margin-top: 18px;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 700px) {
+      nav a {
+        display: block;
+        margin: 8px 0;
+      }
+
+      section {
+        margin: 20px 12px;
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>John Wilder Tukey</h1>
+    <p>The Statistician Who Helped the World See Data Differently</p>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#life">Life History</a>
+      <a href="#discoveries">Discoveries</a>
+      <a href="#society">Society</a>
+      <a href="#bibliography">Bibliography</a>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <h2>What if one person helped invent the way we look at data?</h2>
+    <p class="hook">Every time you use a box plot, explore a data set, or hear the word “bit,” you are connected to John Tukey.</p>
+    <div class="hero-card">
+      <p>
+        John Wilder Tukey was an American mathematician and statistician who changed statistics from simply proving ideas into a way of exploring, visualizing, and understanding real data. His work helped shape modern statistics, computer science, data science, election polling, engineering, and education research.
+      </p>
+      <div class="stat-grid">
+        <div class="stat-box"><strong>1915</strong>Born</div>
+        <div class="stat-box"><strong>1977</strong>Published <em>Exploratory Data Analysis</em></div>
+        <div class="stat-box"><strong>FFT</strong>Helped create a major computer algorithm</div>
+        <div class="stat-box"><strong>2000</strong>Died</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="life">
+    <h2>Life History</h2>
+    <p>John Tukey’s life shows how curiosity, education, and problem-solving can influence many fields at once.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <p class="year">1915</p>
+        <p>John Wilder Tukey was born on June 16, 1915, in New Bedford, Massachusetts.</p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="year">1936–1937</p>
+        <p>He earned his bachelor’s and master’s degrees in chemistry from Brown University.</p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="year">1939</p>
+        <p>Tukey earned his Ph.D. in mathematics from Princeton University. His early academic work was in topology, a branch of mathematics.</p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="year">World War II</p>
+        <p>During the war, Tukey worked on applied research problems. This helped move his career toward practical data analysis and statistics.</p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="year">After World War II</p>
+        <p>He split his career between Princeton University and AT&T Bell Laboratories, two major centers of research and innovation.</p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="year">1947</p>
+        <p>Tukey is credited with helping popularize the word “bit,” meaning a binary digit, which later became central to computer science.</p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="year">1965</p>
+        <p>He became the founding chairman of Princeton University’s statistics department.</p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="year">1973</p>
+        <p>Tukey received the National Medal of Science, one of the highest scientific honors in the United States.</p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="year">1977</p>
+        <p>He published <em>Exploratory Data Analysis</em>, a book that changed how people study and visualize data.</p>
+      </div>
+
+      <div class="timeline-item">
+        <p class="year">2000</p>
+        <p>John Tukey died on July 26, 2000, in New Brunswick, New Jersey.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="discoveries">
+    <h2>Mathematical Discoveries</h2>
+    <p>Tukey’s discoveries were important because they made statistics more visual, practical, and useful for real-world data.</p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Exploratory Data Analysis</h3>
+        <p>Exploratory Data Analysis, or EDA, is the process of looking at data first to find patterns, trends, unusual values, and questions before making formal conclusions.</p>
+      </div>
+
+      <div class="card">
+        <h3>Box-and-Whisker Plot</h3>
+        <p>Tukey helped popularize the box plot, a graph that summarizes the median, quartiles, spread, and possible outliers in a data set.</p>
+      </div>
+
+      <div class="card">
+        <h3>Fast Fourier Transform</h3>
+        <p>With James Cooley, Tukey helped develop the Cooley-Tukey Fast Fourier Transform algorithm, which allows computers to analyze signals much faster.</p>
+      </div>
+
+      <div class="card">
+        <h3>Tukey’s Range Test</h3>
+        <p>Tukey’s range test is used after an ANOVA test to compare different group means and decide which groups are significantly different.</p>
+      </div>
+
+      <div class="card">
+        <h3>Stem-and-Leaf Displays</h3>
+        <p>Tukey promoted simple visual displays, such as stem-and-leaf plots, that allow people to see the shape of data while keeping the original numbers visible.</p>
+      </div>
+
+      <div class="card">
+        <h3>Words in Technology</h3>
+        <p>Tukey is connected to the terms “bit” and “software,” words that became essential in computer science and digital technology.</p>
+      </div>
+    </div>
+
+    <div class="interactive-box">
+      <h3>Interactive Tukey Fact Generator</h3>
+      <p>Click the button to reveal a quick fact about John Tukey.</p>
+      <button onclick="showFact()">Show Fact</button>
+      <p id="factResult">Your fact will appear here.</p>
+    </div>
+  </section>
+
+  <section id="society">
+    <h2>Contributions to Society</h2>
+    <p>John Tukey’s work benefited humankind because it helped people make better decisions using data.</p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Better Data Visualization</h3>
+        <p>Box plots and other visual tools help students, scientists, doctors, businesses, and governments understand large amounts of information quickly.</p>
+      </div>
+
+      <div class="card">
+        <h3>Modern Data Science</h3>
+        <p>Exploratory Data Analysis encouraged people to investigate data visually before jumping to conclusions. This is a major part of modern data science.</p>
+      </div>
+
+      <div class="card">
+        <h3>Technology and Engineering</h3>
+        <p>The Fast Fourier Transform is used in signal processing, image compression, medical imaging, audio technology, astronomy, and many computer applications.</p>
+      </div>
+
+      <div class="card">
+        <h3>Election Polling</h3>
+        <p>Tukey helped design and analyze television network election polls, showing how statistics could explain public opinion and election results.</p>
+      </div>
+
+      <div class="card">
+        <h3>Education Research</h3>
+        <p>He contributed to national education assessment work, helping researchers use data to understand student learning and school performance.</p>
+      </div>
+
+      <div class="card">
+        <h3>Computer Language</h3>
+        <p>By helping introduce words like “bit” and “software,” Tukey influenced the language used in computer science and technology today.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="bibliography" class="bibliography">
+    <h2>Bibliography</h2>
+    <p>This project requires at least four sources: two internet sources and two hardcopy book sources. Replace the book sources below with the exact books you use from your school or local library.</p>
+
+    <h3>Internet Sources</h3>
+    <ol>
+      <li>MacTutor History of Mathematics Archive. “John Tukey.” University of St Andrews, https://mathshistory.st-andrews.ac.uk/Biographies/Tukey/.</li>
+      <li>American Philosophical Society. “John W. Tukey Papers.” https://as.amphilsoc.org/repositories/2/resources/2960.</li>
+      <li>Princeton University Graduate School. “John W. Tukey.” https://gradschool.princeton.edu/about/viget-honor-roll/john-w-tukey.</li>
+    </ol>
+
+    <h3>Hardcopy Book Sources</h3>
+    <ol start="4">
+      <li>Tukey, John W. <em>Exploratory Data Analysis</em>. Addison-Wesley, 1977.</li>
+      <li>Stigler, Stephen M. <em>The History of Statistics: The Measurement of Uncertainty before 1900</em>. Harvard University Press, 1986.</li>
+    </ol>
+
+    <div class="note">
+      <strong>Teacher note:</strong> Since the assignment asks for two hardcopy books, make sure you actually use or check two physical books. If your teacher wants MLA format, convert these entries into MLA style before submitting.
+    </div>
+  </section>
+
+  <footer>
+    <p>AP Statistics Quarter 4 Project | John Wilder Tukey Website</p>
+  </footer>
+
+  <script>
+    const facts = [
+      "John Tukey helped make the box-and-whisker plot famous.",
+      "Tukey believed data should be explored visually before making conclusions.",
+      "The Cooley-Tukey FFT algorithm made many computer calculations much faster.",
+      "Tukey worked at both Princeton University and Bell Labs.",
+      "Tukey is connected to the computer terms ‘bit’ and ‘software.’",
+      "Exploratory Data Analysis is still used in modern data science today."
+    ];
+
+    function showFact() {
+      const randomIndex = Math.floor(Math.random() * facts.length);
+      document.getElementById("factResult").textContent = facts[randomIndex];
+    }
+  </script>
+</body>
+</html>
